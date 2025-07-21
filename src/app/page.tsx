@@ -7,16 +7,17 @@ import { Textbox } from "./components/ui/Textbox";
 
 import '../styles/globals.scss';
 import { useState, useEffect } from "react";
-import { 
+import {
   FaAirbnb,
   FaMoon,
   FaSun,
 } from "react-icons/fa";
+import { Header } from "./components/layout/Header";
 
 export default function Home() {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
-  const test = () => {  
+  const test = () => {
     console.log("test");
   }
 
@@ -35,13 +36,13 @@ export default function Home() {
 
   return (
     <div>
+      <Header
+        title="DICEPASS"
+        description="made by takiido"
+        theme={theme}
+        onThemeChange={handleThemeChange}
+      />
       <main>
-        Theme toggle
-        <Button 
-          text="Toggle theme" 
-          icon={theme === 'light' ? <FaSun /> : <FaMoon />} 
-          onClick={handleThemeChange} 
-        />
         Default button
         <Button text="Generate" onClick={test} />
         Disabled button
