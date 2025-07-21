@@ -37,5 +37,6 @@
         background: var(--color-primary);
         border-radius: 100vmax;
         z-index: 0;
+        transition: width 0ms linear;
     }
 }
