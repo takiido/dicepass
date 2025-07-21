@@ -18,7 +18,7 @@ const Dropdown = ({ options, onChange }: DropdownProps) => {
     const startY = useRef(0);
     const startScrollTop = useRef(0);
 
-    const SCROLLBAR_HEIGHT = 96;
+    const SCROLLBAR_HEIGHT = 70;
 
     const handleScroll = () => {
         if (listRef.current) {
