@@ -1,7 +1,14 @@
+'use client';
+
 import Image from "next/image";
 import styles from "./page.module.css";
+import { Button } from "./components/ui/Button";
 
 export default function Home() {
+  const test = () => {
+    console.log("test");
+  }
+
   return (
     <div className={styles.page}>
       <main className={styles.main}>
@@ -19,6 +26,12 @@ export default function Home() {
           </li>
           <li>Save and see your changes instantly.</li>
         </ol>
+
+        <Button text="Generate" onClick={test} />
+        <Button text="Generate" onClick={test} disabled />
+        <Button onClick={test} icon={<Image src="/vercel.svg" alt="Vercel logomark" width={20} height={20} />} />
+        <Button onClick={test} icon={<Image src="/vercel.svg" alt="Vercel logomark" width={20} height={20} />} disabled />
+        <Button text="Generate" onClick={test} icon={<Image src="/vercel.svg" alt="Vercel logomark" width={20} height={20} />} disabled />
 
         <div className={styles.ctas}>
           <a
