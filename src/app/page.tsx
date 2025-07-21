@@ -4,6 +4,7 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import { Button } from "./components/ui/Button";
 import { Slider } from "./components/ui/Slider";
+import { Textbox } from "./components/ui/Textbox";
 
 export default function Home() {
   const test = () => {
@@ -34,7 +35,8 @@ export default function Home() {
         <Button onClick={test} icon={<Image src="/vercel.svg" alt="Vercel logomark" width={20} height={20} />} disabled />
         <Button text="Generate" onClick={test} icon={<Image src="/vercel.svg" alt="Vercel logomark" width={20} height={20} />} disabled />
         <Slider min={1} max={6} initialValue={4} />
-
+        <Textbox placeholder="Hello" onChange={test} initialValue="Hello" />
+        
         <div className={styles.ctas}>
           <a
             className={styles.primary}
