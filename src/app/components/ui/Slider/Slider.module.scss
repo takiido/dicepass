@@ -10,20 +10,22 @@
         height: 8px;
         appearance: none;
         background-color: transparent;
-        border: 2px solid #7c7c7c;
+        border: 2px solid var(--color-primary);
         border-radius: 100vmax;
         box-shadow: none;
         z-index: 1;
+        cursor: pointer;
 
         &::-webkit-slider-thumb,
         &::-moz-range-thumb {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             appearance: none;
-            background-color: #ffffff;
-            border: none;
+            background-color: var(--color-background);
+            border: 2px solid var(--color-primary);
             border-radius: 100vmax;
             z-index: 1;
+            cursor: pointer;
         }
     }
 
@@ -32,7 +34,7 @@
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        background: #7c7c7c;
+        background: var(--color-primary);
         border-radius: 100vmax;
         z-index: 0;
     }
