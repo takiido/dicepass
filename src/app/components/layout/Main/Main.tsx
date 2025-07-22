@@ -5,7 +5,7 @@ import { Slider } from "../../ui/Slider";
 import styles from './Main.module.scss';
 import { Dropdown } from "../../ui/Dropdown";
 import { useEffect, useState } from "react";
-import { LETTERS_TO_NUMBERS } from "@/app/utils/consts";
+import { LETTERS_TO_NUMBERS, SEPARATORS } from "@/app/utils/consts";
 import { Button } from "../../ui/Button";
 import { FaDiceOne } from "react-icons/fa";
 
@@ -23,16 +23,6 @@ const Main = ({ }: MainProps) => {
     const [words, setWords] = useState<string[]>([]);
     const [password, setPassword] = useState<string>('');
 
-    const separatorOptions = {
-        'None': '',
-        'Space': ' ',
-        'Dash': '-',
-        'Dot': '.',
-        'Underscore': '_',
-        'Hyphen': '-',
-        'Colon': ':',
-    }
-
     const generatePassword = async () => {
         let words = await fetchWords();
         let password = '';
@@ -43,7 +33,7 @@ const Main = ({ }: MainProps) => {
             }
             password += word;
             if (i < numberOfDices - 1) {
-                password += separatorOptions[separator as keyof typeof separatorOptions];
+                password += SEPARATORS[separator as keyof typeof SEPARATORS];
             }
         }
         setPassword(password);
@@ -109,7 +99,7 @@ const Main = ({ }: MainProps) => {
                                 <p>Choose preferred word separator:</p>
                             </div>
                             <Dropdown
-                                options={Object.keys(separatorOptions)}
+                                options={Object.keys(SEPARATORS)}
                                 onChange={(value) => {
                                     setSeparator(value.target.value);
                                 }}

@@ -10,3 +10,13 @@ export const LETTERS_TO_NUMBERS = {
     't': '7',
     'z': '2',
 }
+
+export const SEPARATORS = {
+    'None': '',
+    'Space': ' ',
+    'Dash': '-',
+    'Dot': '.',
+    'Underscore': '_',
+    'Hyphen': '-',
+    'Colon': ':',
+}
