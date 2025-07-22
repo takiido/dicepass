@@ -5,9 +5,14 @@ import { FaBars } from 'react-icons/fa';
 export type DropdownProps = {
     options: string[];
     onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+    disabled?: boolean;
 };
 
-const Dropdown = ({ options, onChange }: DropdownProps) => {
+const Dropdown = ({ 
+    options, 
+    onChange, 
+    disabled = false 
+}: DropdownProps) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState(options[0]);
     const [scrollTop, setScrollTop] = useState(0);
@@ -84,12 +89,18 @@ const Dropdown = ({ options, onChange }: DropdownProps) => {
 
     return (
         <div
-            className={`${styles.dropdown} ${isOpen ? styles.dropdown_open : ''}`}
+            className={`${styles.dropdown} 
+                ${isOpen ? styles.dropdown_open : ''}
+                ${disabled ? styles.dropdown_disabled : ''}`
+            }
             ref={dropdownRef}
         >
             <div
                 className={styles.dropdown_selected}
-                onClick={() => setIsOpen(!isOpen)}
+                onClick={() => {
+                    if (disabled) return;
+                    setIsOpen(!isOpen);
+                }}
             >
                 {selectedOption}
             </div>

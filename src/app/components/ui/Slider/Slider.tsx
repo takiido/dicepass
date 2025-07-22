@@ -30,7 +30,7 @@ const Slider = ({
   }, [initialValue, max, min]);
 
   return (
-    <div className={styles.slider}>
+    <div className={`${styles.slider} ${disabled ? styles.slider_disabled : ''}`}>
         <input
           type="range"
           min={min}

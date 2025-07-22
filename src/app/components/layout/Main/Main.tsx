@@ -4,10 +4,10 @@ import { Textbox } from "../../ui/Textbox";
 import { Slider } from "../../ui/Slider";
 import styles from './Main.module.scss';
 import { Dropdown } from "../../ui/Dropdown";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { LETTERS_TO_NUMBERS, SEPARATORS } from "@/app/utils/consts";
 import { Button } from "../../ui/Button";
-import { FaDiceOne } from "react-icons/fa";
+import { Dice } from "../../ui/Dice";
 
 export type MainProps = {
 }
@@ -20,10 +20,17 @@ const Main = ({ }: MainProps) => {
     const [numberOfDices, setNumberOfDices] = useState<number>(4);
     const [separator, setSeparator] = useState<string>('None');
     const [replaceLetters, setReplaceLetters] = useState<boolean>(true);
-    const [words, setWords] = useState<string[]>([]);
     const [password, setPassword] = useState<string>('');
+    const [isRolling, setIsRolling] = useState<boolean>(false);
+    const [visible, setVisible] = useState<boolean>(false);
 
     const generatePassword = async () => {
+        setVisible(true);
+        setTimeout(() => {
+            setIsRolling(true);
+
+        }, 200)
+
         let words = await fetchWords();
         let password = '';
         for (let i = 0; i < numberOfDices; i++) {
@@ -36,7 +43,13 @@ const Main = ({ }: MainProps) => {
                 password += SEPARATORS[separator as keyof typeof SEPARATORS];
             }
         }
-        setPassword(password);
+        setTimeout(() => {
+            setIsRolling(false);
+            setTimeout(() => {
+                setVisible(false);
+            }, 200)
+            setPassword(password);
+        }, 500 * numberOfDices);
     }
 
     const leetReplace = (input: string): string => {
@@ -62,14 +75,33 @@ const Main = ({ }: MainProps) => {
     return (
         <main>
             <div className="container">
-                <h1>DICEPASS</h1>
                 <div className={styles.generator}>
-                    <Textbox
-                        onChange={() => { }}
-                        readonly
-                        initialValue={password}
-                        placeholder="Enter your password"
-                    />
+                    <div className={styles.generator_output}>
+                        {
+                            visible && (
+                                <div
+                                    className={styles.casino}
+                                    style={{
+                                        opacity: isRolling ? 1 : 0,
+                                    }}
+                                >
+                                    {
+                                        Array.from({ length: 6 }, (_, index) => (
+                                            <div className={styles.casino_dice} key={index}>
+                                                <Dice isRolling={isRolling} />
+                                            </div>
+                                        ))
+                                    }
+                                </div>
+                            )
+                        }
+                        <Textbox
+                            onChange={() => { }}
+                            readonly
+                            initialValue={password}
+                            placeholder="Enter your password"
+                        />
+                    </div>
                     <div className={styles.generator_parameters}>
                         <div className={styles.generator_parameter}>
                             <div className={styles.generator_parameter_label}>
@@ -78,6 +110,7 @@ const Main = ({ }: MainProps) => {
                             <Slider
                                 min={1}
                                 max={6}
+                                disabled={isRolling}
                                 initialValue={4}
                                 onChange={(value) => {
                                     setNumberOfDices(value);
@@ -89,6 +122,7 @@ const Main = ({ }: MainProps) => {
                             </div>
                             <Dropdown
                                 options={['Yes', 'No']}
+                                disabled={isRolling}
                                 onChange={(value) => {
                                     setReplaceLetters(value.target.value === 'Yes');
                                 }}
@@ -100,29 +134,21 @@ const Main = ({ }: MainProps) => {
                             </div>
                             <Dropdown
                                 options={Object.keys(SEPARATORS)}
+                                disabled={isRolling}
                                 onChange={(value) => {
                                     setSeparator(value.target.value);
                                 }}
                             />
                         </div>
                     </div>
-                </div>
-                <div className={styles.casino}>
-                    <Button
-                        onClick={() => {
-                            generatePassword();
-                        }}
-                        text="Roll the dice"
-                    />
-                    <div className={styles.casino_dices}>
-                        {
-                            Array.from({ length: 6 }, (_, index) => (
-                                <div className={styles.casino_dice} key={index}>
-                                    <FaDiceOne/>
-                                    <p>number</p>
-                                </div>
-                            ))
-                        }
+                    <div className={styles.generator_button}>
+                        <Button
+                            disabled={isRolling}
+                            onClick={() => {
+                                generatePassword();
+                            }}
+                            text="Roll the dice"
+                        />
                     </div>
                 </div>
             </div>
