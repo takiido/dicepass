@@ -20,7 +20,7 @@ const Button = ({
             onClick={onClick}
             className={
                 `${styles.button} 
-                ${icon && !text ? styles.icon : ''} 
+                ${icon && !text ? styles['button--icon'] : ''} 
                 ${className}`
             }
             disabled={disabled}

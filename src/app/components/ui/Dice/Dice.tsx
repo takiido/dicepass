@@ -38,7 +38,7 @@ const Dice = ({ isRolling, number }: DiceProps) => {
       : diceIcons[index];
 
   return (
-    <div className={`${styles.dice} ${isRolling ? styles.dice_rolling : ''}`}>
+    <div className={`${styles.dice} ${isRolling ? styles.dice__rolling : ''}`}>
       <IconComponent size={48} />
     </div>
   );

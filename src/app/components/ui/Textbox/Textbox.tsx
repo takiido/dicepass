@@ -52,7 +52,7 @@ const Textbox = ({
                     <Button 
                         onClick={customButtonOnClick || (() => {})} 
                         icon={customButtonIcon} 
-                        className={styles.textbox__custom_button}
+                        className={styles['textbox__custom-button']}
                         disabled={disabled}
                     />
                 )
@@ -68,7 +68,7 @@ const Textbox = ({
                 disabled={disabled}
                 readOnly={readonly}
                 className={`${styles.textbox__input} 
-                    ${readonly ? styles.textbox__input_readonly : ''}
+                    ${readonly ? styles.textbox__input__readonly : ''}
                     ${disabled ? styles.textbox__disabled : ''}
                 ${className}`}
             />

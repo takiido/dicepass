@@ -90,13 +90,13 @@ const Dropdown = ({
     return (
         <div
             className={`${styles.dropdown} 
-                ${isOpen ? styles.dropdown_open : ''}
-                ${disabled ? styles.dropdown_disabled : ''}`
+                ${isOpen ? styles.dropdown__open : ''}
+                ${disabled ? styles.dropdown__disabled : ''}`
             }
             ref={dropdownRef}
         >
             <div
-                className={styles.dropdown_selected}
+                className={styles.dropdown__selected}
                 onClick={() => {
                     if (disabled) return;
                     setIsOpen(!isOpen);
@@ -106,15 +106,15 @@ const Dropdown = ({
             </div>
             <div
                 ref={listRef}
-                className={`${styles.dropdown_list} 
-                    ${isOpen ? styles.dropdown_list_open : ''} 
-                    ${options.length <= 2 ? styles.dropdown_list_noscroll : ''}`}
+                className={`${styles.dropdown__list} 
+                    ${isOpen ? styles.dropdown__list__open : ''} 
+                    ${options.length <= 2 ? styles.dropdown__list__noscroll : ''}`}
                 onScroll={handleScroll}
             >
                 {options.map((option) => (
                     <div
                         key={option}
-                        className={styles.dropdown_list_item}
+                        className={styles.dropdown__list__item}
                         onClick={() => {
                             setSelectedOption(option);
                             setIsOpen(false);
@@ -127,8 +127,8 @@ const Dropdown = ({
             </div>
             {
                 isOpen && options.length > 2 && (
-                    <div className={styles.dropdown_list_scrollbar}>
-                        <div className={styles.dropdown_list_scrollbar_rails}>
+                    <div className={styles.dropdown__list__scrollbar}>
+                        <div className={styles.dropdown__list__scrollbar__rails}>
                             <FaBars
                                 style={{ top: `${getThumbTop()}px`, position: 'absolute', cursor: 'grab' }}
                                 onMouseDown={handleMouseDown}

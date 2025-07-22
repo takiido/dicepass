@@ -77,7 +77,7 @@ const Main = ({ }: MainProps) => {
         <main>
             <div className="container">
                 <div className={styles.generator}>
-                    <div className={styles.generator_output}>
+                    <div className={styles.generator__output}>
                         {
                             visible && (
                                 <div
@@ -88,7 +88,7 @@ const Main = ({ }: MainProps) => {
                                 >
                                     {
                                         Array.from({ length: 6 }, (_, index) => (
-                                            <div className={styles.casino_dice} key={index}>
+                                            <div className={styles.casino__dice} key={index}>
                                                 <Dice isRolling={isRolling} />
                                             </div>
                                         ))
@@ -110,9 +110,9 @@ const Main = ({ }: MainProps) => {
                             }}
                         />
                     </div>
-                    <div className={styles.generator_parameters}>
-                        <div className={styles.generator_parameter}>
-                            <div className={styles.generator_parameter_label}>
+                    <div className={styles.generator__parameters}>
+                        <div className={styles.generator__parameter}>
+                            <div className={styles.generator__parameter__label}>
                                 <p>Your roll will include {numberOfDices} words:</p>
                             </div>
                             <Slider
@@ -124,8 +124,8 @@ const Main = ({ }: MainProps) => {
                                     setNumberOfDices(value);
                                 }} />
                         </div>
-                        <div className={styles.generator_parameter}>
-                            <div className={styles.generator_parameter_label}>
+                        <div className={styles.generator__parameter}>
+                            <div className={styles.generator__parameter__label}>
                                 <p>Replace letters with numbers?</p>
                             </div>
                             <Dropdown
@@ -136,8 +136,8 @@ const Main = ({ }: MainProps) => {
                                 }}
                             />
                         </div>
-                        <div className={styles.generator_parameter}>
-                            <div className={styles.generator_parameter_label}>
+                        <div className={styles.generator__parameter}>
+                            <div className={styles.generator__parameter__label}>
                                 <p>Choose preferred word separator:</p>
                             </div>
                             <Dropdown

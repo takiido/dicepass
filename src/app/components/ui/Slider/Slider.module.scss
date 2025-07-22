@@ -40,7 +40,7 @@
         transition: width 0ms linear;
     }
 
-    &_disabled {
+    &__disabled {
         opacity: 0.5;
         cursor: not-allowed;
         pointer-events: none;
