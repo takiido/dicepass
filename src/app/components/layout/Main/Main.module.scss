@@ -1,0 +1,45 @@
+.generator {
+    margin: 0 auto;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    &_parameters {
+        display: grid;
+        grid-template-columns: repeat(3, 200px);
+        column-gap: 16px;
+    }
+
+    &_parameter {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+
+        &_label {
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+    }
+}
+
+.casino {
+    margin: 0 auto;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    &_dices {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        column-gap: 16px;
+        row-gap: 8px;
+    }
+}
