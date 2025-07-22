@@ -4,6 +4,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 
     &__input {
         width: 100%;
@@ -36,5 +37,16 @@
     &__disabled {
         opacity: 0.5;
         cursor: not-allowed;
+    }
+
+    &__copy {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    &__custom_button {
+        position: absolute;
+        left: 0;
     }
 }

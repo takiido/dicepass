@@ -8,6 +8,7 @@ import { useState } from "react";
 import { LETTERS_TO_NUMBERS, SEPARATORS } from "@/app/utils/consts";
 import { Button } from "../../ui/Button";
 import { Dice } from "../../ui/Dice";
+import { FaRedo } from "react-icons/fa";
 
 export type MainProps = {
 }
@@ -100,6 +101,13 @@ const Main = ({ }: MainProps) => {
                             readonly
                             initialValue={password}
                             placeholder="Enter your password"
+                            copy
+                            disabled={isRolling}
+                            customButton
+                            customButtonIcon={<FaRedo/>}
+                            customButtonOnClick={() => {
+                                generatePassword();
+                            }}
                         />
                     </div>
                     <div className={styles.generator_parameters}>
@@ -140,15 +148,6 @@ const Main = ({ }: MainProps) => {
                                 }}
                             />
                         </div>
-                    </div>
-                    <div className={styles.generator_button}>
-                        <Button
-                            disabled={isRolling}
-                            onClick={() => {
-                                generatePassword();
-                            }}
-                            text="Roll the dice"
-                        />
                     </div>
                 </div>
             </div>
