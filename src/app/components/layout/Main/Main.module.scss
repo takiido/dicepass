@@ -61,3 +61,27 @@
         grid-column: span 2;
     }
 }
+
+@media (max-width: 768px) {
+    .generator {
+        &__parameters {
+            max-width: 248px;
+            width: 100%;
+            grid-template-columns: repeat(1, 1fr);
+            row-gap: 16px;
+        }
+    }
+
+    .casino {
+        gap: 8px;
+    }
+
+    .cards {
+        margin-top: 2rem;
+        grid-template-columns: 1fr;
+
+        > :last-child {
+            grid-column: span 1;
+        }
+    }
+}

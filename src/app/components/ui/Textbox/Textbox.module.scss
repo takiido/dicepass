@@ -49,4 +49,10 @@
         position: absolute;
         left: 0;
     }
+
+    @media (max-width: 768px) {
+        &__input {
+            font-size: 12px;
+        }
+    }
 }
