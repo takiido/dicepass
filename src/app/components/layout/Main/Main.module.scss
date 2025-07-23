@@ -49,3 +49,14 @@
     align-items: center;
     backdrop-filter: blur(10px);
 }
+
+.cards {
+    margin-top: 6rem;
+    display: grid;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 16px;
+
+    > :last-child {
+        grid-column: span 2;
+    }
+}

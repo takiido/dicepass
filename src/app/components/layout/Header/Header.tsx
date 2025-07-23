@@ -1,5 +1,9 @@
 import Image from "next/image";
-import { FaGithub, FaMoon, FaSun } from "react-icons/fa";
+import {
+  LuGithub,
+  LuSun,
+  LuMoon
+} from "react-icons/lu";
 import { Button } from "../../ui/Button";
 import styles from './Header.module.scss';
 
@@ -37,13 +41,13 @@ const Header = ({
         </div>
         <div className={styles.header__actions}>
             <Button
-                icon={<FaGithub />}
+                icon={<LuGithub />}
                 onClick={() => {
                     window.open('https://github.com/takiido/dicepass', '_blank');
                 }}
             />
             <Button
-                icon={theme === 'light' ? <FaSun /> : <FaMoon />}
+                icon={theme === 'light' ? <LuSun /> : <LuMoon />}
                 onClick={onThemeChange}
             />
         </div>

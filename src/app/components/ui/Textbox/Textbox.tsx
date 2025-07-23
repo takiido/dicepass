@@ -1,6 +1,6 @@
 'use client';
 
-import { FaCheck, FaCopy } from 'react-icons/fa';
+import { LuCheck, LuCopy } from 'react-icons/lu';
 import { Button } from '../Button';
 import styles from './Textbox.module.scss';
 import { useState, useEffect } from 'react';
@@ -76,7 +76,7 @@ const Textbox = ({
                 copy && (
                     <Button 
                         onClick={handleCopy} 
-                        icon={copied ? <FaCheck/> : <FaCopy/>} 
+                        icon={copied ? <LuCheck/> : <LuCopy/>} 
                         className={styles.textbox__copy}
                         disabled={copied || disabled}
                     />

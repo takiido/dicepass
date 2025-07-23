@@ -6,9 +6,14 @@ import styles from './Main.module.scss';
 import { Dropdown } from "../../ui/Dropdown";
 import { useState } from "react";
 import { LETTERS_TO_NUMBERS, SEPARATORS } from "@/app/utils/consts";
-import { Button } from "../../ui/Button";
 import { Dice } from "../../ui/Dice";
-import { FaRedo } from "react-icons/fa";
+import {
+    LuRefreshCcw,
+    LuBraces,
+    LuDice5,
+    LuBrain
+} from "react-icons/lu";
+import { Card } from "../../ui/Card";
 
 export type MainProps = {
 }
@@ -100,11 +105,11 @@ const Main = ({ }: MainProps) => {
                             onChange={() => { }}
                             readonly
                             initialValue={password}
-                            placeholder="Enter your password"
+                            placeholder="Your password will appear here"
                             copy
                             disabled={isRolling}
                             customButton
-                            customButtonIcon={<FaRedo/>}
+                            customButtonIcon={<LuRefreshCcw />}
                             customButtonOnClick={() => {
                                 generatePassword();
                             }}
@@ -149,6 +154,54 @@ const Main = ({ }: MainProps) => {
                             />
                         </div>
                     </div>
+                </div>
+                <div className={styles.cards}>
+                    <Card
+                        title="Diceware Method"
+                        description={
+                            <>
+                                <p>
+                                    Diceware is a technique for generating secure passphrases using physical dice and a predefined wordlist. Each word in the list is mapped to a unique five-digit number, which you create by rolling a six-sided die five times.                                </p>
+                                <p>
+                                    By repeating this process for multiple words, you build a passphrase made up of random, unrelated words. The randomness of the dice ensures that the result is both strong and difficult to predict.                                </p>
+                            </>
+                        }
+                        icon={<LuDice5 />}
+                    />
+                    <Card
+                        title="Why Diceware?"
+                        description={
+                            <ul>
+                                <li>
+                                    <strong>Secure:</strong> Random words mean high entropy. Hackers can’t guess what real dice gave you.
+                                </li>
+                                <li>
+                                    <strong>Memorable:</strong>  Real words are easier to remember than weird symbols or numbers.
+                                </li>
+                                <li>
+                                    <strong>Easy to Type:</strong> No more shifting for symbols — just type simple words and you’re in.
+                                </li>
+                            </ul>
+                        }
+                        icon={<LuBrain />}
+                    />
+                    <Card
+                        title="Dicepass"
+                        description={
+                            <>
+                                <p>
+                                    DicePass is a project designed to make Diceware password generation simple and accessible. Built with Next.js, it offers a clean and responsive interface that lets you generate secure passphrases quickly and easily.
+                                </p>
+                                <p>
+                                    The word lists used come from trusted sources to ensure strong randomness and high entropy, creating passwords that are both safe and user-friendly. You can customize how many words you want in your passphrase right on the page.
+                                </p>
+                                <p>
+                                    The project is fully open source, and you can find a link to the code repository in the top navigation bar for easy access and contributions.
+                                </p>
+                            </>
+                        }
+                        icon={<LuBraces />}
+                    />
                 </div>
             </div>
         </main>

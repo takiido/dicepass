@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from './Dropdown.module.scss';
-import { FaBars } from 'react-icons/fa';
+import { LuGripHorizontal } from 'react-icons/lu';
 
 export type DropdownProps = {
     options: string[];
@@ -129,7 +129,7 @@ const Dropdown = ({
                 isOpen && options.length > 2 && (
                     <div className={styles.dropdown__list__scrollbar}>
                         <div className={styles.dropdown__list__scrollbar__rails}>
-                            <FaBars
+                            <LuGripHorizontal
                                 style={{ top: `${getThumbTop()}px`, position: 'absolute', cursor: 'grab' }}
                                 onMouseDown={handleMouseDown}
                             />

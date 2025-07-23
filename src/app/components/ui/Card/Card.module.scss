@@ -1,0 +1,42 @@
+.card {
+    color: var(--color-text);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    
+    &__title {
+        padding: 24px;
+        font-size: 24px;
+        font-weight: 600;
+        color: var(--color-text);
+        display: flex;
+        gap: 12px;
+        align-items: center;
+
+        svg {
+            width: 36px;
+            height: 36px;
+        }
+    }
+
+    &__description {
+        height: 100%;
+        padding: 0 24px 24px 24px;
+        font-size: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        text-align: start;
+
+        ul {
+            height: 100%;
+            padding-left: 24px;
+            list-style-type: disc;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            justify-content: space-between;
+        }
+    }
+}

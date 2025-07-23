@@ -3,20 +3,20 @@
 import { useEffect, useState } from 'react';
 import styles from './Dice.module.scss';
 import {
-  FaDiceOne,
-  FaDiceTwo,
-  FaDiceThree,
-  FaDiceFour,
-  FaDiceFive,
-  FaDiceSix,
-} from 'react-icons/fa';
+  LuDice1,
+  LuDice2,
+  LuDice3,
+  LuDice4,
+  LuDice5,
+  LuDice6,
+} from 'react-icons/lu';
 
 export type DiceProps = {
   isRolling: boolean;
   number?: number; // 1 to 6
 };
 
-const diceIcons = [FaDiceOne, FaDiceTwo, FaDiceThree, FaDiceFour, FaDiceFive, FaDiceSix];
+const diceIcons = [LuDice1, LuDice2, LuDice3, LuDice4, LuDice5, LuDice6];
 
 const Dice = ({ isRolling, number }: DiceProps) => {
   const [index, setIndex] = useState(0);
