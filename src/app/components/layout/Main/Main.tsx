@@ -76,7 +76,7 @@ const Main = () => {
     }
 
     return (
-        <main>
+        <main className={styles.main}>
             <div className="container">
                 <div className={styles.generator}>
                     <div className={styles.generator__output}>
