@@ -6,6 +6,7 @@ import {
 } from "react-icons/lu";
 import { Button } from "../../ui/Button";
 import styles from './Header.module.scss';
+import Link from "next/link";
 
 export type HeaderProps = {
   title: string;
@@ -37,7 +38,9 @@ const Header = ({
         />
         </div>
         <div className={styles.header__title}>
-            <a href="/">{title}</a>
+          <Link href="/">
+            {title}
+          </Link>
         </div>
         <div className={styles.header__actions}>
             <Button

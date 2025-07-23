@@ -15,14 +15,11 @@ import {
 } from "react-icons/lu";
 import { Card } from "../../ui/Card";
 
-export type MainProps = {
-}
-
 export type RequestParams = {
     numberOfDices: number;
 }
 
-const Main = ({ }: MainProps) => {
+const Main = () => {
     const [numberOfDices, setNumberOfDices] = useState<number>(4);
     const [separator, setSeparator] = useState<string>('None');
     const [replaceLetters, setReplaceLetters] = useState<boolean>(true);
@@ -37,7 +34,7 @@ const Main = ({ }: MainProps) => {
 
         }, 200)
 
-        let words = await fetchWords();
+        const words = await fetchWords();
         let password = '';
         for (let i = 0; i < numberOfDices; i++) {
             let word = Object.values(words.passphrase)[i] as string;
