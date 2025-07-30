@@ -12,11 +12,11 @@ export const LETTERS_TO_NUMBERS = {
 }
 
 export const SEPARATORS = {
-    'None': '',
-    'Space': ' ',
-    'Dash': '-',
-    'Dot': '.',
-    'Underscore': '_',
-    'Hyphen': '-',
-    'Colon': ':',
+    'none': '',
+    'space': ' ',
+    'dash': '-',
+    'dot': '.',
+    'underscore': '_',
+    'hyphen': '-',
+    'colon': ':',
 }
