@@ -5,7 +5,7 @@ import { Slider } from "../../ui/Slider";
 import styles from './Main.module.scss';
 import { Dropdown } from "../../ui/Dropdown";
 import { useState } from "react";
-import { LETTERS_TO_NUMBERS, SEPARATORS } from "@/app/utils/consts";
+import { SEPARATORS } from "@/app/utils/consts";
 import { Dice } from "../../ui/Dice";
 import {
     LuRefreshCcw,
@@ -34,43 +34,18 @@ const Main = () => {
 
         }, 200)
 
-        const words = await fetchWords();
-        let password = '';
-        for (let i = 0; i < numberOfDices; i++) {
-            let word = Object.values(words.passphrase)[i] as string;
-            if (replaceLetters) {
-                word = leetReplace(word);
-            }
-            password += word;
-            if (i < numberOfDices - 1) {
-                password += SEPARATORS[separator as keyof typeof SEPARATORS];
-            }
-        }
+        const response = await fetchPassword();
         setTimeout(() => {
             setIsRolling(false);
             setTimeout(() => {
                 setVisible(false);
             }, 200)
-            setPassword(password);
+            setPassword(response.passphrase);
         }, 500 * numberOfDices);
     }
 
-    const leetReplace = (input: string): string => {
-        return input
-            .split('')
-            .map(char => {
-                const lowerChar = char.toLowerCase();
-                if (lowerChar in LETTERS_TO_NUMBERS) {
-                    // Tell TS this key is valid
-                    return LETTERS_TO_NUMBERS[lowerChar as keyof typeof LETTERS_TO_NUMBERS];
-                }
-                return char;
-            })
-            .join('');
-    }
-
-    const fetchWords = async () => {
-        const response = await fetch(`/api/generate?count=${numberOfDices}`);
+    const fetchPassword = async () => {
+        const response = await fetch(`/api/generate?count=${numberOfDices}&leet=${replaceLetters}&separator=${separator}`);
         const data = await response.json();
         return data;
     }
