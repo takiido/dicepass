@@ -23,6 +23,7 @@ const Main = () => {
     const [numberOfDices, setNumberOfDices] = useState<number>(4);
     const [separator, setSeparator] = useState<string>('None');
     const [replaceLetters, setReplaceLetters] = useState<boolean>(true);
+    const [camelCase, setCamelCase] = useState<boolean>(true);
     const [password, setPassword] = useState<string>('');
     const [isRolling, setIsRolling] = useState<boolean>(false);
     const [visible, setVisible] = useState<boolean>(false);
@@ -45,7 +46,7 @@ const Main = () => {
     }
 
     const fetchPassword = async () => {
-        const response = await fetch(`/api/generate?count=${numberOfDices}&leet=${replaceLetters}&separator=${separator}`);
+        const response = await fetch(`/api/generate?count=${numberOfDices}&leet=${replaceLetters}&separator=${separator}&camelCase=${camelCase}`);
         const data = await response.json();
         return data;
     }
@@ -122,6 +123,18 @@ const Main = () => {
                                 disabled={isRolling}
                                 onChange={(value) => {
                                     setSeparator(value.target.value);
+                                }}
+                            />
+                        </div>
+                        <div className={styles.generator__parameter}>
+                            <div className={styles.generator__parameter__label}>
+                                <p>Use camel case?</p>
+                            </div>
+                            <Dropdown
+                                options={['Yes', 'No']}
+                                disabled={isRolling}
+                                onChange={(value) => {
+                                    setCamelCase(value.target.value === 'Yes');
                                 }}
                             />
                         </div>
