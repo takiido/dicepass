@@ -4,7 +4,7 @@ import { Textbox } from "../../ui/Textbox";
 import { Slider } from "../../ui/Slider";
 import styles from './Main.module.scss';
 import { Dropdown } from "../../ui/Dropdown";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SEPARATORS } from "@/app/utils/consts";
 import { Dice } from "../../ui/Dice";
 import {
@@ -52,6 +52,10 @@ const Main = () => {
         const data = await response.json();
         return data;
     }
+
+    useEffect(() => {
+        setSeparator('none');
+    }, [customSeparator]);
 
     return (
         <main className={styles.main}>
