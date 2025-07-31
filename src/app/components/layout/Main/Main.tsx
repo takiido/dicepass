@@ -23,8 +23,8 @@ export type RequestParams = {
 const Main = () => {
     const [numberOfDices, setNumberOfDices] = useState<number>(4);
     const [separator, setSeparator] = useState<string>('None');
-    const [replaceLetters, setReplaceLetters] = useState<boolean>(true);
-    const [camelCase, setCamelCase] = useState<boolean>(true);
+    const [leetReplace, setLeetReplace] = useState<boolean>(false);
+    const [camelCase, setCamelCase] = useState<boolean>(false);
     const [password, setPassword] = useState<string>('');
     const [isRolling, setIsRolling] = useState<boolean>(false);
     const [visible, setVisible] = useState<boolean>(false);
@@ -47,7 +47,7 @@ const Main = () => {
     }
 
     const fetchPassword = async () => {
-        const response = await fetch(`/api/generate?count=${numberOfDices}&leet=${replaceLetters}&separator=${separator}&camelCase=${camelCase}`);
+        const response = await fetch(`/api/generate?count=${numberOfDices}&leet=${leetReplace}&separator=${separator}&camelCase=${camelCase}`);
         const data = await response.json();
         return data;
     }
@@ -108,9 +108,9 @@ const Main = () => {
                                 <p>Replace letters with numbers?</p>
                             </div>
                             <Checkbox
-                                checked={replaceLetters}
+                                checked={leetReplace}
                                 onChange={(value) => {
-                                    setReplaceLetters(value);
+                                    setLeetReplace(value);
                                 }}
                             />
                         </div>
