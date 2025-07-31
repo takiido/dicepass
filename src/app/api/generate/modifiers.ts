@@ -17,8 +17,9 @@ export const addLeetReplaceMod = (input: string): string => {
 export const addSeparatorMod = (input: string, separator: string): string => {
   if (separator in SEPARATORS) {
     return input + SEPARATORS[separator as keyof typeof SEPARATORS];
+  } else {
+    return input + separator;
   }
-  return input;
 }
 
 export const addCamelCaseMod = (input: string): string => {
