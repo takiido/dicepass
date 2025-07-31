@@ -14,6 +14,7 @@ import {
     LuBrain
 } from "react-icons/lu";
 import { Card } from "../../ui/Card";
+import { Checkbox } from "../../ui/Checkbox";
 
 export type RequestParams = {
     numberOfDices: number;
@@ -22,7 +23,8 @@ export type RequestParams = {
 const Main = () => {
     const [numberOfDices, setNumberOfDices] = useState<number>(4);
     const [separator, setSeparator] = useState<string>('None');
-    const [replaceLetters, setReplaceLetters] = useState<boolean>(true);
+    const [leetReplace, setLeetReplace] = useState<boolean>(false);
+    const [camelCase, setCamelCase] = useState<boolean>(false);
     const [password, setPassword] = useState<string>('');
     const [isRolling, setIsRolling] = useState<boolean>(false);
     const [visible, setVisible] = useState<boolean>(false);
@@ -45,7 +47,7 @@ const Main = () => {
     }
 
     const fetchPassword = async () => {
-        const response = await fetch(`/api/generate?count=${numberOfDices}&leet=${replaceLetters}&separator=${separator}`);
+        const response = await fetch(`/api/generate?count=${numberOfDices}&leet=${leetReplace}&separator=${separator}&camelCase=${camelCase}`);
         const data = await response.json();
         return data;
     }
@@ -105,11 +107,10 @@ const Main = () => {
                             <div className={styles.generator__parameter__label}>
                                 <p>Replace letters with numbers?</p>
                             </div>
-                            <Dropdown
-                                options={['Yes', 'No']}
-                                disabled={isRolling}
+                            <Checkbox
+                                checked={leetReplace}
                                 onChange={(value) => {
-                                    setReplaceLetters(value.target.value === 'Yes');
+                                    setLeetReplace(value);
                                 }}
                             />
                         </div>
@@ -122,6 +123,17 @@ const Main = () => {
                                 disabled={isRolling}
                                 onChange={(value) => {
                                     setSeparator(value.target.value);
+                                }}
+                            />
+                        </div>
+                        <div className={styles.generator__parameter}>
+                            <div className={styles.generator__parameter__label}>
+                                <p>Use camel case?</p>
+                            </div>
+                            <Checkbox
+                                checked={camelCase}
+                                onChange={(value) => {
+                                    setCamelCase(value);
                                 }}
                             />
                         </div>

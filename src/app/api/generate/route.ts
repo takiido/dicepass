@@ -1,19 +1,21 @@
 import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
-import { leetReplace, addSeparator } from './modifiers';
+import { 
+  addLeetReplaceMod,
+  addSeparatorMod,
+  addCamelCaseMod,
+} from './modifiers';
 
 export async function GET(request: Request) {
-  // Get parameters
+  // Get and parse parameters
   const url = new URL(request.url);
-  const countParam = url.searchParams.get('count');
-  const leetParam = url.searchParams.get('leet');
-  const separatorParam = url.searchParams.get('separator');
-
-  // Parse parameters
-  const count = countParam ? parseInt(countParam, 10) : 4;
-  const leet = leetParam ? leetParam === 'true' : false;
-  const separator = separatorParam ? separatorParam : 'none';
+  const params = {
+    count: Math.max(1, parseInt(url.searchParams.get('count') || '4', 10) || 4),
+    leet: url.searchParams.get('leet') === 'true',
+    separator: url.searchParams.get('separator') || 'none',
+    camelCase: url.searchParams.get('camelCase') === 'true',
+  }
 
   // Read wordlist
   const wordlistPath = path.join(process.cwd(), 'data', 'wordlist.txt');
@@ -28,22 +30,32 @@ export async function GET(request: Request) {
       return { code, word };
     });
 
-  const passphraseEntries = Array.from({ length: count }, () => {
+  const passphraseEntries = Array.from({ length: params.count }, () => {
     return entries[Math.floor(Math.random() * entries.length)];
   });
 
   // Apply modifiers
   let passphrase: string = '';
 
-  if (leet) {
+  if (params.leet) {
     passphraseEntries.forEach(entry => {
-      entry.word = leetReplace(entry.word);
+      entry.word = addLeetReplaceMod(entry.word);
+    });
+  }
+
+  if (params.camelCase) {
+    passphraseEntries.forEach((entry, index) => {
+      if (index > 0) {
+        entry.word = addCamelCaseMod(entry.word);
+      } else {
+        entry.word = entry.word.toLowerCase();
+      }
     });
   }
 
   passphraseEntries.forEach((entry, index) => {
     if (index < passphraseEntries.length - 1) {
-      passphrase += addSeparator(entry.word, separator);
+      passphrase += addSeparatorMod(entry.word, params.separator);
     } else {
       passphrase += entry.word;
     }
