@@ -11,7 +11,7 @@ export async function GET(request: Request) {
   // Get and parse parameters
   const url = new URL(request.url);
   const params = {
-    count: parseInt(url.searchParams.get('count') || '4', 10),
+    count: Math.max(1, parseInt(url.searchParams.get('count') || '4', 10) || 4),
     leet: url.searchParams.get('leet') === 'true',
     separator: url.searchParams.get('separator') || 'none',
     camelCase: url.searchParams.get('camelCase') === 'true',

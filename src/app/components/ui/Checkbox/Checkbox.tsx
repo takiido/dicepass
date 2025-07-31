@@ -1,6 +1,3 @@
-"use client";
-
-import { useState } from "react";
 import styles from "./Checkbox.module.scss";
 import { LuCheck } from "react-icons/lu";
 
@@ -9,17 +6,14 @@ type CheckboxProps = {
   onChange: (checked: boolean) => void;
 };
 
-const Checkbox = ({ checked, onChange }: CheckboxProps) => {
-    const [isChecked, setIsChecked] = useState(checked);
-    
+const Checkbox = ({ checked, onChange }: CheckboxProps) => {    
     return (
         <div className={styles.checkbox}>
             <div className={styles.checkbox__box} onClick={() => {
-                setIsChecked(!isChecked);
-                onChange(!isChecked);
+                onChange(!checked);
             }}>
                 {
-                    isChecked && (
+                    checked && (
                         <div className={styles.checkbox__box__icon}>
                             <LuCheck />
                         </div>
