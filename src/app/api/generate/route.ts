@@ -44,8 +44,12 @@ export async function GET(request: Request) {
   }
 
   if (params.camelCase) {
-    passphraseEntries.forEach(entry => {
-      entry.word = addCamelCaseMod(entry.word);
+    passphraseEntries.forEach((entry, index) => {
+      if (index > 0) {
+        entry.word = addCamelCaseMod(entry.word);
+      } else {
+        entry.word = entry.word.toLowerCase();
+      }
     });
   }
 
