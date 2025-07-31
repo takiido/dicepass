@@ -4,7 +4,7 @@ import { Textbox } from "../../ui/Textbox";
 import { Slider } from "../../ui/Slider";
 import styles from './Main.module.scss';
 import { Dropdown } from "../../ui/Dropdown";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SEPARATORS } from "@/app/utils/consts";
 import { Dice } from "../../ui/Dice";
 import {
@@ -28,6 +28,7 @@ const Main = () => {
     const [password, setPassword] = useState<string>('');
     const [isRolling, setIsRolling] = useState<boolean>(false);
     const [visible, setVisible] = useState<boolean>(false);
+    const [customSeparator, setCustomSeparator] = useState<boolean>(false);
 
     const generatePassword = async () => {
         setVisible(true);
@@ -51,6 +52,10 @@ const Main = () => {
         const data = await response.json();
         return data;
     }
+
+    useEffect(() => {
+        setSeparator('none');
+    }, [customSeparator]);
 
     return (
         <main className={styles.main}>
@@ -105,7 +110,18 @@ const Main = () => {
                         </div>
                         <div className={styles.generator__parameter}>
                             <div className={styles.generator__parameter__label}>
-                                <p>Replace letters with numbers?</p>
+                                <p>Use camel case?</p>
+                            </div>
+                            <Checkbox
+                                checked={camelCase}
+                                onChange={(value) => {
+                                    setCamelCase(value);
+                                }}
+                            />
+                        </div>
+                        <div className={styles.generator__parameter}>
+                            <div className={styles.generator__parameter__label}>
+                                <p>Use leet speak?</p>
                             </div>
                             <Checkbox
                                 checked={leetReplace}
@@ -116,26 +132,36 @@ const Main = () => {
                         </div>
                         <div className={styles.generator__parameter}>
                             <div className={styles.generator__parameter__label}>
-                                <p>Choose preferred word separator:</p>
+                                <p>Choose separator:</p>
                             </div>
-                            <Dropdown
-                                options={Object.keys(SEPARATORS)}
-                                disabled={isRolling}
-                                onChange={(value) => {
-                                    setSeparator(value.target.value);
-                                }}
-                            />
-                        </div>
-                        <div className={styles.generator__parameter}>
-                            <div className={styles.generator__parameter__label}>
-                                <p>Use camel case?</p>
+                            {
+                                customSeparator ? (
+                                    <Textbox
+                                        placeholder="Enter custom separator"
+                                        maxLength={1}
+                                        onChange={(value) => {
+                                            setSeparator(value);
+                                        }}
+                                    />
+                                ) : (
+                                    <Dropdown
+                                    options={Object.keys(SEPARATORS)}
+                                    disabled={isRolling}
+                                    onChange={(value) => {
+                                        setSeparator(value.target.value);
+                                    }}
+                                />
+                                )
+                            }
+                            <div className={styles.generator__parameter__info}>
+                                <p>use custom:</p>
+                                <Checkbox
+                                    checked={customSeparator}
+                                    onChange={(value) => {
+                                        setCustomSeparator(value);
+                                    }}
+                                />
                             </div>
-                            <Checkbox
-                                checked={camelCase}
-                                onChange={(value) => {
-                                    setCamelCase(value);
-                                }}
-                            />
                         </div>
                     </div>
                 </div>

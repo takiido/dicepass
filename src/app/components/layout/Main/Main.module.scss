@@ -22,7 +22,7 @@
         width: fit-content;
         margin: 0 auto;
         display: grid;
-        grid-template-columns: repeat(3, 200px);
+        grid-template-columns: repeat(1, 400px);
         column-gap: 16px;
         row-gap: 24px;
     }
@@ -33,15 +33,22 @@
         align-items: center;
         justify-content: center;
         gap: 16px;
-
-        @media (min-width: 768px) {
-            &:nth-child(1) {
-                grid-column: span 3;
-            }
+        
+        &:nth-child(2),
+        &:nth-child(3) {
+            flex-direction: row;
+            justify-content: space-between;
         }
 
         &__label {
             text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        &__info {
             display: flex;
             align-items: center;
             justify-content: center;

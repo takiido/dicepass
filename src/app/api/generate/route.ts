@@ -6,6 +6,7 @@ import {
   addSeparatorMod,
   addCamelCaseMod,
 } from './modifiers';
+import { SEPARATORS } from '@/app/utils/consts';
 
 export async function GET(request: Request) {
   // Get and parse parameters
@@ -53,6 +54,10 @@ export async function GET(request: Request) {
     });
   }
 
+  if (!checkIfSeparatorValid(params.separator)) {
+    params.separator = 'none';
+  }
+
   passphraseEntries.forEach((entry, index) => {
     if (index < passphraseEntries.length - 1) {
       passphrase += addSeparatorMod(entry.word, params.separator);
@@ -62,4 +67,14 @@ export async function GET(request: Request) {
   });
 
   return NextResponse.json({ passphrase });
+}
+
+const checkIfSeparatorValid = (separator: string): boolean => {
+  if (Object.keys(SEPARATORS).includes(separator)) {
+    return true;
+  } else if (separator.length === 1 && typeof separator === 'string') {
+    return true;
+  }
+
+  return false;
 }

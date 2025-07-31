@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react';
 
 export type TextboxProps = {
     initialValue?: string;
+    maxLength?: number;
     placeholder?: string;
     disabled?: boolean;
     className?: string;
@@ -20,6 +21,7 @@ export type TextboxProps = {
 
 const Textbox = ({
     initialValue,
+    maxLength,
     placeholder,
     disabled,
     className,
@@ -60,6 +62,7 @@ const Textbox = ({
             <input
                 type="text"
                 value={value}
+                maxLength={maxLength}
                 onChange={(e) => {
                     setValue(e.target.value);
                     onChange(e.target.value);
