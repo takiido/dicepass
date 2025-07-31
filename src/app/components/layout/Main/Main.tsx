@@ -14,6 +14,7 @@ import {
     LuBrain
 } from "react-icons/lu";
 import { Card } from "../../ui/Card";
+import { Checkbox } from "../../ui/Checkbox";
 
 export type RequestParams = {
     numberOfDices: number;
@@ -106,11 +107,10 @@ const Main = () => {
                             <div className={styles.generator__parameter__label}>
                                 <p>Replace letters with numbers?</p>
                             </div>
-                            <Dropdown
-                                options={['Yes', 'No']}
-                                disabled={isRolling}
+                            <Checkbox
+                                checked={replaceLetters}
                                 onChange={(value) => {
-                                    setReplaceLetters(value.target.value === 'Yes');
+                                    setReplaceLetters(value);
                                 }}
                             />
                         </div>
@@ -130,11 +130,10 @@ const Main = () => {
                             <div className={styles.generator__parameter__label}>
                                 <p>Use camel case?</p>
                             </div>
-                            <Dropdown
-                                options={['Yes', 'No']}
-                                disabled={isRolling}
+                            <Checkbox
+                                checked={camelCase}
                                 onChange={(value) => {
-                                    setCamelCase(value.target.value === 'Yes');
+                                    setCamelCase(value);
                                 }}
                             />
                         </div>
