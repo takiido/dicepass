@@ -2,9 +2,9 @@ import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 import { 
-  leetReplace,
-  addSeparator,
-  useCamelCase,
+  addLeetReplaceMod,
+  addSeparatorMod,
+  addCamelCaseMod,
 } from './modifiers';
 
 export async function GET(request: Request) {
@@ -39,19 +39,19 @@ export async function GET(request: Request) {
 
   if (params.leet) {
     passphraseEntries.forEach(entry => {
-      entry.word = leetReplace(entry.word);
+      entry.word = addLeetReplaceMod(entry.word);
     });
   }
 
   if (params.camelCase) {
     passphraseEntries.forEach(entry => {
-      entry.word = useCamelCase(entry.word);
+      entry.word = addCamelCaseMod(entry.word);
     });
   }
 
   passphraseEntries.forEach((entry, index) => {
     if (index < passphraseEntries.length - 1) {
-      passphrase += addSeparator(entry.word, params.separator);
+      passphrase += addSeparatorMod(entry.word, params.separator);
     } else {
       passphrase += entry.word;
     }
