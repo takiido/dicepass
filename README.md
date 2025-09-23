@@ -1,6 +1,6 @@
 # 🎲 DicePass
 
-**DicePass** is a simple, beautiful tool for generating secure Diceware-style passphrases. Built with **Next.js**, it helps you create memorable, high-entropy passwords using real words — no weird symbols, no hassle.
+**DicePass** is a simple, beautiful tool for generating secure Diceware-style passphrases. Built with **Next.js**, it helps me create memorable passwords using real words.
 
 ![screenshot](./public/preview.png)
 
@@ -8,12 +8,11 @@
 
 ## ✨ Features
 
-- 🎲 Random, dice-based word generation
-- 🔐 Strong passphrases that are easy to remember
-- 🧠 Human-friendly interface
-- 📱 Mobile responsive
-- 🌙 Dark mode support
-- 🌍 Open source and customizable
+- Random, dice-based word generation
+- Strong passphrases that are easy to remember
+- Human-friendly interface
+- Mobile responsive
+- Kanye West picture hidden somwhere
 
 ---
 
@@ -24,16 +23,6 @@ Diceware is a method for creating strong passwords using dice and a predefined w
 > `planet velvet hammer fox glide`
 
 Learn more in the [Diceware section](https://en.wikipedia.org/wiki/Diceware) on Wikipedia.
-
----
-
-## 🚀 About DicePass
-
-**DicePass** was created to make Diceware password generation fast, simple, and pleasant. Built with **Next.js**, it focuses on clarity, usability, and clean design. You choose how many words you want, hit generate, and you’re done.
-
-The wordlists are sourced from trusted projects to ensure both randomness and readability.
-
-Want to adapt or improve it? The code is open and available — just hit the button in the top-right to visit the repo.
 
 ---
 
